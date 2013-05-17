@@ -1,4 +1,4 @@
 RSSReader
 =========
 
-A Mac app like Google Reader
+一个实现和 Google Reader 相同功能的Mac应用程序。
