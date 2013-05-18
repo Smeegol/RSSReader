@@ -11,17 +11,17 @@
 #import "PXSourceList/PXSourceList.h"
 #import "SourceListItem.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSTableViewDataSource, NSTableViewDelegate, NSSplitViewDelegate, PXSourceListDataSource, PXSourceListDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSSplitViewDelegate, PXSourceListDataSource, PXSourceListDelegate> {
 	NSArray *rootsArray;
     NSDictionary *foldersDict;
     NSDictionary *itemsDict;
 	
-	IBOutlet PXSourceList *sourceList;
-	NSMutableArray *sourceListItems;
+	NSMutableArray *rootItems;
+	NSArray *articlesArray;
 }
 
 @property (assign) IBOutlet NSWindow *window;
-//@property (weak) IBOutlet NSSplitView *outerSplitView;
+@property (weak) IBOutlet PXSourceList *sourceList;
 @property (weak) IBOutlet NSSplitView *innerSplitView;
 @property (weak) IBOutlet NSOutlineView *outlineView;
 @property (weak) IBOutlet NSTableView *itemsTableView;

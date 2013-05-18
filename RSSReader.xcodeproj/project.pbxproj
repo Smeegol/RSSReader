@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3F0ED3FA1743CDF900AFC614 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0ED3F91743CDF900AFC614 /* WebKit.framework */; };
 		3F0ED3FD1743D07200AFC614 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ED3FC1743D07200AFC614 /* Global.m */; };
+		3F32F512174769BA0084732A /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F32F511174769BA0084732A /* ArticleCell.xib */; };
+		3F3D754317474B3B00AF9314 /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D754217474B3B00AF9314 /* ArticleCell.m */; };
 		3F426EAF1741D6560004A94B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3F426EAD1741D6560004A94B /* Credits.rtf */; };
 		3F567B401745C13D000F470A /* Action.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F567A801745C13D000F470A /* Action.png */; };
 		3F567B411745C13D000F470A /* Action@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F567A811745C13D000F470A /* Action@2x.png */; };
@@ -204,6 +206,9 @@
 		3F0ED3F91743CDF900AFC614 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		3F0ED3FB1743D07200AFC614 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		3F0ED3FC1743D07200AFC614 /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
+		3F32F511174769BA0084732A /* ArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCell.xib; sourceTree = "<group>"; };
+		3F3D754117474B3B00AF9314 /* ArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleCell.h; sourceTree = "<group>"; };
+		3F3D754217474B3B00AF9314 /* ArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
 		3F426EAE1741D6560004A94B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		3F567A801745C13D000F470A /* Action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Action.png; sourceTree = "<group>"; };
 		3F567A811745C13D000F470A /* Action@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Action@2x.png"; sourceTree = "<group>"; };
@@ -665,6 +670,9 @@
 				3FBD745D173DFC3400A43A06 /* MainMenu.xib */,
 				3F0ED3FB1743D07200AFC614 /* Global.h */,
 				3F0ED3FC1743D07200AFC614 /* Global.m */,
+				3F3D754117474B3B00AF9314 /* ArticleCell.h */,
+				3F3D754217474B3B00AF9314 /* ArticleCell.m */,
+				3F32F511174769BA0084732A /* ArticleCell.xib */,
 				3F8F71F41745F824001F7779 /* PXSourceList */,
 				3F567A7E1745C13D000F470A /* Images */,
 				3FBD744F173DFC3400A43A06 /* Supporting Files */,
@@ -919,6 +927,7 @@
 				3F8F72081745FC9A001F7779 /* playlist.png in Resources */,
 				3F8F72091745FC9A001F7779 /* playlistFolder.png in Resources */,
 				3F8F720A1745FC9A001F7779 /* podcasts.png in Resources */,
+				3F32F512174769BA0084732A /* ArticleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,6 +943,7 @@
 				3FBD745C173DFC3400A43A06 /* AppDelegate.m in Sources */,
 				3F0ED3FD1743D07200AFC614 /* Global.m in Sources */,
 				3F8F71FB1745F824001F7779 /* PXSourceList.m in Sources */,
+				3F3D754317474B3B00AF9314 /* ArticleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Global.h"
+#import "ArticleCell.h"
 
 @implementation AppDelegate
 
@@ -18,41 +19,32 @@
 	NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 	[_articleWebView.mainFrame loadRequest:request];
-	
-	NSRect frame = [_window frame];
-	frame.size = [Global screenResolution].size;
-	[_window setFrame:frame display:YES animate:YES];
 }
 
 - (void)awakeFromNib
 {
-	rootsArray = [[NSArray alloc] initWithObjects:@"主页", @"所有条目", @"加星标的条目", @"趋势", @"订阅", nil];
+	/*rootsArray = [[NSArray alloc] initWithObjects:@"主页", @"所有条目", @"加星标的条目", @"趋势", @"订阅", nil];
     foldersDict = [[NSDictionary alloc] initWithObjectsAndKeys:
 				   [NSArray arrayWithObjects:@"Blog", @"cnBeta", @"Cute", nil], @"订阅", nil];
     itemsDict = [[NSDictionary alloc] initWithObjectsAndKeys:
 				 [NSMutableArray arrayWithObjects:@"无名小卒", nil], @"Blog",
 				 [NSArray arrayWithObjects:@"cnBeta.COM", nil], @"cnBeta",
-				 [NSArray arrayWithObjects:@"果壳网", @"萝卜网", nil], @"Cute", nil];
-    
-    //[sideBar setRowSizeStyle:NSTableViewRowSizeStyleDefault];
-    //[sideBar expandItem:nil expandChildren:YES];
-    //[sideBar setFocusRingType: NSFocusRingTypeNone];
+				 [NSArray arrayWithObjects:@"果壳网", @"萝卜网", nil], @"Cute", nil];*/
 	
 	
-	sourceListItems = [[NSMutableArray alloc] init];
+	rootItems = [[NSMutableArray alloc] init];
 	
-	SourceListItem *libraryItem = [SourceListItem itemWithTitle:@"主页" identifier:@"library"];
-	SourceListItem *musicItem = [SourceListItem itemWithTitle:@"所有条目" identifier:@"music"];
-	SourceListItem *moviesItem = [SourceListItem itemWithTitle:@"加星标的条目" identifier:@"movies"];
-	SourceListItem *podcastsItem = [SourceListItem itemWithTitle:@"趋势" identifier:@"podcasts"];
-	SourceListItem *audiobooksItem = [SourceListItem itemWithTitle:@"设置" identifier:@"audiobooks"];
-	[musicItem setIcon:[NSImage imageNamed:@"music.png"]];
-	[moviesItem setIcon:[NSImage imageNamed:@"movies.png"]];
-	[podcastsItem setIcon:[NSImage imageNamed:@"podcasts.png"]];
-	[audiobooksItem setIcon:[NSImage imageNamed:@"audiobooks.png"]];
-	[musicItem setBadgeValue:54];
-	[libraryItem setChildren:[NSArray arrayWithObjects:musicItem, moviesItem, podcastsItem,
-							  audiobooksItem, nil]];
+	SourceListItem *homeItem = [SourceListItem itemWithTitle:@"主页" identifier:@"library"];
+	SourceListItem *allItem = [SourceListItem itemWithTitle:@"所有条目" identifier:@"music"];
+	SourceListItem *staredItem = [SourceListItem itemWithTitle:@"加星标的条目" identifier:@"movies"];
+	SourceListItem *trendItem = [SourceListItem itemWithTitle:@"趋势" identifier:@"podcasts"];
+	SourceListItem *settingsItem = [SourceListItem itemWithTitle:@"设置" identifier:@"audiobooks"];
+	[allItem setBadgeValue:54];
+	[staredItem setBadgeValue:0];
+	[homeItem setChildren:[NSArray arrayWithObjects:allItem, staredItem, trendItem, settingsItem, nil]];
+	
+	NSImage *folderIcon = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericFolderIcon)];
+	NSImage *fileIcon = [[NSWorkspace sharedWorkspace] iconForFileType:@".txt"];
 	
 	SourceListItem *playlistsItem = [SourceListItem itemWithTitle:@"订阅" identifier:@"playlists"];
 	
@@ -73,18 +65,34 @@
 	SourceListItem *playlistItem3_2 = [SourceListItem itemWithTitle:@"萝卜网" identifier:@"playlist3_2"];
 	[playlistItem3_1 setIcon:[NSImage imageNamed:@"playlist.png"]];
 	[playlistItem3_2 setIcon:[NSImage imageNamed:@"playlist.png"]];
+	
 	[playlistGroup3 setChildren:[NSArray arrayWithObjects:playlistItem3_1, playlistItem3_2, nil]];
 	
 	SourceListItem *playlistItem4 = [SourceListItem itemWithTitle:@"Smeegol.COM" identifier:@"playlist4"];
 	[playlistItem4 setIcon:[NSImage imageNamed:@"playlist.png"]];
 	
+	[playlistGroup1 setIcon:folderIcon];
+	[playlistGroup2 setIcon:folderIcon];
+	[playlistGroup3 setIcon:folderIcon];
+	[playlistItem1_1 setIcon:fileIcon];
+	[playlistItem2_1 setIcon:fileIcon];
+	[playlistItem3_1 setIcon:fileIcon];
+	[playlistItem3_2 setIcon:fileIcon];
+	[playlistItem4 setIcon:fileIcon];
+	
 	[playlistsItem setChildren:[NSArray arrayWithObjects:playlistGroup1, playlistGroup2, playlistGroup3,
 								playlistItem4, nil]];
 	
-	[sourceListItems addObject:libraryItem];
-	[sourceListItems addObject:playlistsItem];
+	[rootItems addObject:homeItem];
+	[rootItems addObject:playlistsItem];
 	
-	[sourceList reloadData];
+	[_sourceList reloadData];
+	
+	articlesArray = [[NSArray alloc] initWithObjects:@"AAA", @"BBB", nil];
+	
+	NSRect frame = [_window frame];
+	frame.size = [Global screenResolution].size;
+	[_window setFrame:frame display:YES animate:YES];
 }
 
 - (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)subview
@@ -104,22 +112,18 @@
 
 - (NSUInteger)sourceList:(PXSourceList*)sourceList numberOfChildrenOfItem:(id)item
 {
-	//Works the same way as the NSOutlineView data source: `nil` means a parent item
-	if(item==nil) {
-		return [sourceListItems count];
-	}
-	else {
+	if (item == nil) {
+		return [rootItems count];
+	} else {
 		return [[item children] count];
 	}
 }
 
 - (id)sourceList:(PXSourceList*)aSourceList child:(NSUInteger)index ofItem:(id)item
 {
-	//Works the same way as the NSOutlineView data source: `nil` means a parent item
-	if(item==nil) {
-		return [sourceListItems objectAtIndex:index];
-	}
-	else {
+	if (item == nil) {
+		return [rootItems objectAtIndex:index];
+	} else {
 		return [[item children] objectAtIndex:index];
 	}
 }
@@ -207,72 +211,48 @@
 - (void)sourceListDeleteKeyPressedOnRows:(NSNotification *)notification
 {
 	NSIndexSet *rows = [[notification userInfo] objectForKey:@"rows"];
-	
 	NSLog(@"Delete key pressed on rows %@", rows);
-	
-	//Do something here
 }
-
-/*#pragma mark - NSOutlineViewDatasource
-
-- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
-{
-    if (item == nil) {
-        return [rootsArray count];
-    } else if ([item isEqualToString:@"订阅"]) {
-        return [[foldersDict objectForKey:item] count];
-    } else {
-        return [[itemsDict objectForKey:item] count];
-    }
-}
-
-- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
-{
-    if (item == nil) {
-        return [rootsArray objectAtIndex: index];
-    } else if ([item isEqualToString:@"订阅"]) {
-        return [[foldersDict objectForKey:item] objectAtIndex:index];
-    } else {
-        return [[itemsDict objectForKey:item] objectAtIndex:index];
-    }
-}
-
-- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
-{
-	if ([item isEqualToString:@"订阅"]) {
-        return YES;
-    }
-	for (NSString *folder in [foldersDict objectForKey:@"订阅"]) {
-		if ([item isEqualToString:folder]) {
-			return YES;
-		}
-	}
-	return NO;
-}
-
-- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
-{
-    if ([rootsArray containsObject:item]) {
-        NSTableCellView *cellView = [outlineView makeViewWithIdentifier:@"HeaderCell" owner:self];
-        [cellView.textField setStringValue:item];
-        return cellView;
-    } else {
-        NSTableCellView *cellView = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
-        [cellView.textField setStringValue:item];
-        return cellView;
-    }
-}*/
 
 #pragma mark - NSTableViewDatasource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-	return 2;
+	return [articlesArray count];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-	return @"aa";
+	return [articlesArray objectAtIndex:row];
+}
+
+#pragma mark - NSTableViewDelegate
+
+/*- (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+	ArticleCell *cell = [[ArticleCell alloc] init];
+	[cell setTitle:@"aaaa"];
+	return cell;
+}*/
+
+/*- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+	[tableView setTarget:self];
+    [tableView setAction:@selector(click)];
+	
+    NSString *identifier = [tableColumn identifier];
+    if ([identifier isEqualToString:@"ArticleTableCell"]) {
+        ArticleTableCell *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
+        cellView.titleLabel.stringValue = @"Name";
+        return cellView;
+    }
+    return nil;
+}*/
+
+- (void)click {
+    //int index = [table selectedRow];
+    //[[arrayToDisplay objectAtIndex:index] findHiggsBoson];
+	NSLog(@"click");
 }
 
 @end
