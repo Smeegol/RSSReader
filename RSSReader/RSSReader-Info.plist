@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>icon_128x128</string>
+	<string>reeder.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.yiyacare.${PROJECT_NAME}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

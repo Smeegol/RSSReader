@@ -10,14 +10,15 @@
 #import <WebKit/WebKit.h>
 #import "PXSourceList/PXSourceList.h"
 #import "SourceListItem.h"
+//#import "INAppStoreWindow.h"
 
 @interface MainWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSSplitViewDelegate, PXSourceListDataSource, PXSourceListDelegate> {
-	NSArray *rootsArray;
-    NSDictionary *foldersDict;
-    NSDictionary *itemsDict;
+	NSMutableArray *rootsArray;
+	NSMutableArray *foldersArray;
+	NSMutableDictionary *channelsDict;
+	NSMutableArray *articlesArray;
 	
-	NSMutableArray *rootItems;
-	NSArray *articlesArray;
+	//INAppStoreWindow *window;
 }
 
 @property (weak) IBOutlet PXSourceList *sourceList;
