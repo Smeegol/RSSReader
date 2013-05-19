@@ -7,24 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <WebKit/WebKit.h>
-#import "PXSourceList/PXSourceList.h"
-#import "SourceListItem.h"
+#import "MainWindowController.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSSplitViewDelegate, PXSourceListDataSource, PXSourceListDelegate> {
-	NSArray *rootsArray;
-    NSDictionary *foldersDict;
-    NSDictionary *itemsDict;
-	
-	NSMutableArray *rootItems;
-	NSArray *articlesArray;
-}
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
-@property (weak) IBOutlet PXSourceList *sourceList;
-@property (weak) IBOutlet NSSplitView *innerSplitView;
-@property (weak) IBOutlet NSOutlineView *outlineView;
-@property (weak) IBOutlet NSTableView *itemsTableView;
-@property (weak) IBOutlet WebView *articleWebView;
+@property (strong) MainWindowController *mainWindowController;
 
 @end

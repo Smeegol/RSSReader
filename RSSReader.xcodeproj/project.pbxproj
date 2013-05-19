@@ -195,6 +195,8 @@
 		3F8F72081745FC9A001F7779 /* playlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8F72021745FC99001F7779 /* playlist.png */; };
 		3F8F72091745FC9A001F7779 /* playlistFolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8F72031745FC9A001F7779 /* playlistFolder.png */; };
 		3F8F720A1745FC9A001F7779 /* podcasts.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8F72041745FC9A001F7779 /* podcasts.png */; };
+		3F923970174874D0000A9D53 /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F92396E174874CF000A9D53 /* MainWindowController.m */; };
+		3F923971174874D0000A9D53 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F92396F174874CF000A9D53 /* MainWindowController.xib */; };
 		3FBD7449173DFC3400A43A06 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD7448173DFC3400A43A06 /* Cocoa.framework */; };
 		3FBD7453173DFC3400A43A06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD7451173DFC3400A43A06 /* InfoPlist.strings */; };
 		3FBD7455173DFC3400A43A06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD7454173DFC3400A43A06 /* main.m */; };
@@ -397,7 +399,10 @@
 		3F8F72021745FC99001F7779 /* playlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playlist.png; sourceTree = "<group>"; };
 		3F8F72031745FC9A001F7779 /* playlistFolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playlistFolder.png; sourceTree = "<group>"; };
 		3F8F72041745FC9A001F7779 /* podcasts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = podcasts.png; sourceTree = "<group>"; };
-		3FBD7445173DFC3400A43A06 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F92396D174874CF000A9D53 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
+		3F92396E174874CF000A9D53 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
+		3F92396F174874CF000A9D53 /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
+		3FBD7445173DFC3400A43A06 /* RSS阅读器.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS阅读器.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FBD7448173DFC3400A43A06 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3FBD744B173DFC3400A43A06 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		3FBD744C173DFC3400A43A06 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -637,7 +642,7 @@
 		3FBD7446173DFC3400A43A06 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3FBD7445173DFC3400A43A06 /* RSSReader.app */,
+				3FBD7445173DFC3400A43A06 /* RSS阅读器.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -673,6 +678,9 @@
 				3F3D754117474B3B00AF9314 /* ArticleCell.h */,
 				3F3D754217474B3B00AF9314 /* ArticleCell.m */,
 				3F32F511174769BA0084732A /* ArticleCell.xib */,
+				3F92396D174874CF000A9D53 /* MainWindowController.h */,
+				3F92396E174874CF000A9D53 /* MainWindowController.m */,
+				3F92396F174874CF000A9D53 /* MainWindowController.xib */,
 				3F8F71F41745F824001F7779 /* PXSourceList */,
 				3F567A7E1745C13D000F470A /* Images */,
 				3FBD744F173DFC3400A43A06 /* Supporting Files */,
@@ -709,7 +717,7 @@
 			);
 			name = RSSReader;
 			productName = RSSReader;
-			productReference = 3FBD7445173DFC3400A43A06 /* RSSReader.app */;
+			productReference = 3FBD7445173DFC3400A43A06 /* RSS阅读器.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -928,6 +936,7 @@
 				3F8F72091745FC9A001F7779 /* playlistFolder.png in Resources */,
 				3F8F720A1745FC9A001F7779 /* podcasts.png in Resources */,
 				3F32F512174769BA0084732A /* ArticleCell.xib in Resources */,
+				3F923971174874D0000A9D53 /* MainWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +953,7 @@
 				3F0ED3FD1743D07200AFC614 /* Global.m in Sources */,
 				3F8F71FB1745F824001F7779 /* PXSourceList.m in Sources */,
 				3F3D754317474B3B00AF9314 /* ArticleCell.m in Sources */,
+				3F923970174874D0000A9D53 /* MainWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1043,7 +1053,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSReader/RSSReader-Prefix.pch";
 				INFOPLIST_FILE = "RSSReader/RSSReader-Info.plist";
-				PRODUCT_NAME = RSSReader;
+				PRODUCT_NAME = "RSS阅读器";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1055,7 +1065,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSReader/RSSReader-Prefix.pch";
 				INFOPLIST_FILE = "RSSReader/RSSReader-Info.plist";
-				PRODUCT_NAME = RSSReader;
+				PRODUCT_NAME = "RSS阅读器";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
